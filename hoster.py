@@ -124,8 +124,13 @@ def update_hosts_file():
     with open(aux_file_path,"w") as aux_hosts:
         aux_hosts.writelines(lines)
 
-    #replace etc/hosts with aux file, making it atomic
-    shutil.move(aux_file_path, hosts_path)
+    # Read the contents of aux_file_path
+    with open(aux_file_path, 'r') as aux_file:
+        content = aux_file.read()
+
+    # Write the contents to hosts_path
+    with open(hosts_path, 'w') as hosts_file:
+        hosts_file.write(content)
 
 
 def parse_args():
