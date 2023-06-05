@@ -7,7 +7,7 @@ hoster is intended to run in a Docker container:
     docker run -d \
         -v /var/run/docker.sock:/tmp/docker.sock \
         -v /etc/hosts:/tmp/hosts \
-        dvdarias/docker-hoster
+        0xradical/docker-hoster
 
 The `docker.sock` is mounted to allow hoster to listen for Docker events and automatically register containers IP.
 
@@ -28,3 +28,9 @@ For example, the following container would be available via DNS as `myname`, `my
 If you need more features like **systemd interation** and **dns forwarding** please check [resolvable](https://hub.docker.com/r/mgood/resolvable/)
 
 Any contribution is, of course, welcome. :)
+
+## Building
+
+```bash
+docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile .
+```
